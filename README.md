@@ -46,7 +46,7 @@ Now you are ready to implement assignments. Tasks modules are located in the **t
    *   '',  'bb'  => 'bb'
    */
   function concatenateStrings(value1, value2) {
-     throw new Error('Not implemented');
+    return value1+value2;  
   }
 ```
 Resolve this task using the following [TDD steps](https://en.wikipedia.org/wiki/Test-driven_development#Test-driven_development_cycle):
