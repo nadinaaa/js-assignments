@@ -100,8 +100,38 @@ const PokerRank = {
 }
 
 function getPokerHandRank(hand) {
-    throw new Error('Not implemented');
-}
+    
+        let cards = '234567891JQKA'
+        let ranks = hand.map(v => v[0]).sort((a, b) => cards.indexOf(a) - cards.indexOf(b)).join('');
+        let suits = hand.map(v => v[v.length - 1]).join('');
+        let groupedRanks = ranks.match(/(.)\1{0,99}/g);
+        let groupedSuits = suits.match(/(.)\1{0,99}/g);
+        if (groupedSuits.length == 1 && (cards.indexOf(ranks) != -1 || ranks == '2345A')) {
+            return PokerRank.StraightFlush;
+        }
+        if (groupedRanks[0].length == 4 || groupedRanks[1].length == 4) {
+            return PokerRank.FourOfKind;
+        }
+        if (groupedRanks[0].length + groupedRanks[1].length == 5) {
+            return PokerRank.FullHouse;
+        }
+        if (groupedSuits.length == 1) {
+            return PokerRank.Flush;
+        }
+        if (cards.indexOf(ranks) != -1 || ranks == '2345A') {
+            return PokerRank.Straight;
+        }
+        if (groupedRanks[0].length == 3 || groupedRanks[1].length == 3 || groupedRanks[2].length == 3) {
+            return PokerRank.ThreeOfKind;
+        }
+        if (groupedRanks[0].length + groupedRanks[1].length + groupedRanks[2].length == 5) {
+            return PokerRank.TwoPairs;
+        }
+        if (groupedRanks[0].length + groupedRanks[1].length + groupedRanks[2].length + groupedRanks[3].length == 5) {
+            return PokerRank.OnePair;
+        }
+        return PokerRank.HighCard;
+    }
 
 
 /**

@@ -46,6 +46,18 @@ function findStringInSnakingPuzzle(puzzle, searchStr) {
  */
 function* getPermutations(chars) {
     throw new Error('Not implemented');
+    /*
+    if ( chars.length > 1 ) {
+        for(var i=0; i<chars.length; i++) {
+            var tmp = chars.substr(0,i) + chars.substr(i+1);
+            var prefix = chars.substr(i,1);
+            Vs( tmp  {
+                callback( prefix + str )        
+            })
+        }
+    } else {
+        callback( s );
+    }*/
 }
 
 

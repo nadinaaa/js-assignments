@@ -57,6 +57,7 @@ function createCompassPoints() {
  */
 function* expandBraces(str) {
     throw new Error('Not implemented');
+    
 }
 
 
@@ -88,6 +89,7 @@ function* expandBraces(str) {
  *
  */
 function getZigZagMatrix(n) {
+    
     throw new Error('Not implemented');
 }
 
@@ -137,7 +139,31 @@ function canDominoesMakeRow(dominoes) {
  * [ 1, 2, 4, 5]          => '1,2,4,5'
  */
 function extractRanges(nums) {
-    throw new Error('Not implemented');
+    var len = nums.length;
+    var out = [];
+    var i, j;
+   
+    for (i = 0; i < len; i = j + 1) {
+      // beginning of range or single
+      out.push(nums[i]);
+   
+      // find end of range
+      for (var j = i + 1; j < len && nums[j] == nums[j-1] + 1; j++);
+      j--;
+   
+      if (i == j) {
+        // single number
+        out.push(",");
+      } else if (i + 1 == j) {
+        // two numbers
+        out.push(",", nums[j], ",");
+      } else { 
+        // range
+        out.push("-", nums[j], ",");
+      }
+    }
+    out.pop(); // remove trailing comma
+    return out.join("");
 }
 
 module.exports = {
